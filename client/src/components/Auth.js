@@ -99,6 +99,7 @@ const Auth = ({ rerender, navigate, setCurrentUser }) => {
           value={loginFormData.email}
           onChange={handleLoginChange}
       />
+      <br/>
       <label htmlFor="password">Password:</label>
       <input
           id="password-input"

@@ -1,9 +1,14 @@
 import React from "react";
+import AnimalCard from "./AnimalCard";
 
-function AllAnimals() {
+function AllAnimals({ animalArray }) {
+
+    const renderAnimals = animalArray.map(animal => {
+        return ( <AnimalCard animal={animal} /> )
+    })
 
     return(
-        <div>AllAnimals</div>
+        <div>{renderAnimals}</div>
     )
 }
 
