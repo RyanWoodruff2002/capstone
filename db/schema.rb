@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_22_145733) do
+ActiveRecord::Schema.define(version: 2022_09_23_155025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2022_09_22_145733) do
     t.string "imageLink"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "assoc_threats", default: [], array: true
   end
 
   create_table "donations", force: :cascade do |t|

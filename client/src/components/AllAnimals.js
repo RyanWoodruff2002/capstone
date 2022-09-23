@@ -1,11 +1,11 @@
 import React from "react";
 import AnimalCard from "./AnimalCard";
 
-function AllAnimals({ animalArray }) {
+function AllAnimals({ currentUser, animalArray }) {
 
     const renderAnimals = animalArray.map(animal => {
-        return ( <AnimalCard animal={animal} /> )
-    })
+        return ( <AnimalCard currentUser={currentUser} animal={animal} /> )
+    }) 
 
     return(
         <div>{renderAnimals}</div>

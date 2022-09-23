@@ -1,6 +1,15 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
-function MyAccount({ currentUser, setIsAuthenticated, setCurrentUser }) {
+function MyAccount({ setIsAuthenticated, setCurrentUser }) {
+
+  const [currentUserState, setCurrentUserState] = useState({})
+
+  useEffect(() => {
+    fetch('/me')
+    .then(res=> res.json())
+    .then(user => setCurrentUserState(user))
+  }, [])
+  console.log(currentUserState)
 
 
   const handleLogout = () => {
@@ -15,23 +24,21 @@ function MyAccount({ currentUser, setIsAuthenticated, setCurrentUser }) {
   }
 
   const [emailToggle, setEmailToggle] = useState(true)
-  console.log(emailToggle)
-
   
   return(
     <div>
       <h1>My Account</h1>
-      <p>Hello {currentUser.first_name}</p>
+      <p>Hello {currentUserState.first_name}</p>
       <div>
         {emailToggle 
         ?
         <div>
-          <>{currentUser.email} </> 
+          <>{currentUserState.email} </> 
           <button onClick={() => setEmailToggle(emailToggle => !emailToggle)} >Edit</button>
         </div>
         : 
         <div>
-          <input placeholder={currentUser.email} ></input>
+          <input placeholder={currentUserState.email} ></input>
           <button onClick={() => setEmailToggle(emailToggle => !emailToggle)} >Cancel</button>
         </div>
         }

@@ -128,7 +128,7 @@ const Auth = ({ rerender, navigate, setCurrentUser }) => {
             onChange={handleChange}
         />
         <br/>
-        <label htmlFor="last_name">First Name:</label>
+        <label htmlFor="last_name">Last Name:</label>
         <input
             id="last_name-signup-input"
             type="text"

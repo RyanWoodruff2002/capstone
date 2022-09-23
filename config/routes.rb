@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  # resources :animals
-  resources :donations
+  post "/donation", to: "donations#createDonation"
+  post "/animal", to: "animals#createAnimal"
+
   delete "/logout", to: "sessions#destroy"
   post "/login", to: "sessions#create"
   post "/users", to: "users#create"
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
 
   get '/signup', to: "users#create"
   get '/me', to: "users#show"
+
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }

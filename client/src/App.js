@@ -12,7 +12,6 @@ function App() {
 
   const [animalArray, setAnimalArray] = useState([])
 
-
   useEffect(() => {
     fetch("/animals").then((res) => {
       res.json().then((data) => {
@@ -57,7 +56,7 @@ function App() {
     <div className="app">
         <Navbar />
         <Routes>
-          <Route path='/allanimals' element={<AllAnimals animalArray={animalArray} />} />
+          <Route path='/allanimals' element={<AllAnimals currentUser={currentUser} animalArray={animalArray} />} />
           <Route path='/myanimals' element={<MyAnimals />} />
           <Route path ='/myaccount' element ={<MyAccount currentUser={currentUser} setIsAuthenticated={setIsAuthenticated} rerender={rerender} setCurrentUser={setCurrentUser} />} />
         </Routes>
