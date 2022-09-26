@@ -12,6 +12,18 @@ class UsersController < ApplicationController
         end
     end
 
+    def update
+        user = current_user
+        user.update(user_params)
+        render json: user, status: :ok
+    end
+
+    def delete
+        user = User.find(params[:id])
+        user.destroy
+        render json: user, status: :ok
+    end
+
     def show
         current_user = User.find(session[:user_id])
         if current_user

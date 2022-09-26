@@ -9,14 +9,11 @@ function AnimalCard({ currentUser, animal }) {
     }
 
     const [donateAmount, setDonateAmount] = useState()
-    console.log(donateAmount)
-    // /donation
-    // /animal
 
-    const [getAnimal, setGetAnimal] = useState({})
+    const [getAnimal, setGetAnimal] = useState(0)
+    console.log(getAnimal)
 
     function findOrCreate() {
-        console.log(animalData)
         fetch('/animal', {
             method: 'POST',
             headers: {
@@ -24,7 +21,29 @@ function AnimalCard({ currentUser, animal }) {
             },
             body: JSON.stringify(animalData)
         })
-        .then(res=> console.log(res))
+        .then(res=> res.json())
+        .then(res => setGetAnimal(res.id))
+        .then(createDonation())
+    }
+
+    function createDonation() {
+        fetch('/donation', {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(donationData)
+        })
+        .then(res=>res.json())
+        .then(res => {if (res.id === null) {
+            fetch('/donation', {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(donationData)
+            })
+        }})
     }
 
     const animalData = {
@@ -34,15 +53,16 @@ function AnimalCard({ currentUser, animal }) {
         "assoc_threats": animal.assoc_threats
     }
 
-    // const donationData = {
-    //     "user_id": currentUser.id,
-    //     "animal_id": ,
-    //     "amount": donateAmount
-    // }
+    const donationData = {
+        "user_id": currentUser.id,
+        "animal_id": getAnimal,
+        "amount": donateAmount
+    }
 
     function handleSubmit(e) {
         e.preventDefault()
         findOrCreate()
+        e.target.reset()
     }
 
     const threats = animal.assoc_threats

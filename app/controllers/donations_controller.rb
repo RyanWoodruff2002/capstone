@@ -4,7 +4,7 @@ class DonationsController < ApplicationController
     skip_before_action :authorized,  only: :animal_data
 
     def createDonation
-        donation = Donation.create!(donation_params)
+        donation = Donation.create(donation_params)
         render json: donation, status: :created
     end
 

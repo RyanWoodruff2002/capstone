@@ -24,6 +24,30 @@ function MyAccount({ setIsAuthenticated, setCurrentUser }) {
   }
 
   const [emailToggle, setEmailToggle] = useState(true)
+
+  function deleteAccount() {
+    fetch(`/deactivate/${currentUserState.id}`, {
+      method: 'DELETE'
+    }).then(r=>r.json()).then(r=>console.log(r)).then(handleLogout())
+  }
+
+  const [emailEdit, setEmailEdit] = useState('')
+  console.log(emailEdit)
+
+  const editEmailData = {
+    "email": emailEdit
+  }
+
+  function handleSubmitEmail() {
+    fetch('/updateEmail', {
+      method: 'PATCH',
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(editEmailData)
+    })
+    .then(r=>r.json()).then(r=>console.log(r))
+  }
   
   return(
     <div>
@@ -38,12 +62,17 @@ function MyAccount({ setIsAuthenticated, setCurrentUser }) {
         </div>
         : 
         <div>
-          <input placeholder={currentUserState.email} ></input>
+          <input placeholder={currentUserState.email} onChange={e => setEmailEdit(e.target.value)} ></input>
+          <button onClick={handleSubmitEmail} >Submit</button>
           <button onClick={() => setEmailToggle(emailToggle => !emailToggle)} >Cancel</button>
         </div>
         }
       </div>
+      <br/>
       <button onClick={handleLogout} >Logout</button>
+      <br/>
+      <br/>
+      <button onClick={deleteAccount} >Deactivate Account</button>
     </div>
    )
 }
