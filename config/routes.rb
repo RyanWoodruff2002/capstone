@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get '/signup', to: "users#create"
   get '/me', to: "users#show"
   delete '/deactivate/:id', to: "users#delete"
-  patch '/updateEmail', to: "users#update"
+  patch '/update_email/:id', to: "users#update"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

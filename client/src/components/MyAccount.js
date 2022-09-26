@@ -38,15 +38,17 @@ function MyAccount({ setIsAuthenticated, setCurrentUser }) {
     "email": emailEdit
   }
 
-  function handleSubmitEmail() {
-    fetch('/updateEmail', {
+  function handleSubmitEmail(e) {
+    e.preventDefault()
+    
+    fetch(`/update_email/${currentUserState.id}`, {
       method: 'PATCH',
-      headers: {
-        "Content-type": "application/json"
-      },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(editEmailData)
     })
-    .then(r=>r.json()).then(r=>console.log(r))
+    .then(r=>r.json())
+    .then(r=>console.log(r))
+    // .then(setEmailToggle(emailToggle => !emailToggle))
   }
   
   return(
@@ -61,11 +63,11 @@ function MyAccount({ setIsAuthenticated, setCurrentUser }) {
           <button onClick={() => setEmailToggle(emailToggle => !emailToggle)} >Edit</button>
         </div>
         : 
-        <div>
+        <form onSubmit={handleSubmitEmail} >
           <input placeholder={currentUserState.email} onChange={e => setEmailEdit(e.target.value)} ></input>
-          <button onClick={handleSubmitEmail} >Submit</button>
+          <button type="submit" >Submit</button>
           <button onClick={() => setEmailToggle(emailToggle => !emailToggle)} >Cancel</button>
-        </div>
+        </form>
         }
       </div>
       <br/>
