@@ -10,9 +10,6 @@ function AnimalCard({ currentUser, animal }) {
 
     const [donateAmount, setDonateAmount] = useState()
 
-    const [getAnimal, setGetAnimal] = useState(0)
-    console.log(getAnimal)
-
     function findOrCreate() {
         fetch('/animal', {
             method: 'POST',
@@ -22,28 +19,19 @@ function AnimalCard({ currentUser, animal }) {
             body: JSON.stringify(animalData)
         })
         .then(res=> res.json())
-        .then(res => setGetAnimal(res.id))
-        .then(createDonation())
+        .then(res => createDonation(res.id))
     }
 
-    function createDonation() {
+    function createDonation(id) {
         fetch('/donation', {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(donationData)
+            body: JSON.stringify({'user_id': currentUser.id,
+             'animal_id': id, 'amount': donateAmount})
         })
-        .then(res=>res.json())
-        .then(res => {if (res.id === null) {
-            fetch('/donation', {
-                method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(donationData)
-            })
-        }})
+        .then(res=>res.json()).then(res=>console.log(res))
     }
 
     const animalData = {
@@ -53,11 +41,7 @@ function AnimalCard({ currentUser, animal }) {
         "assoc_threats": animal.assoc_threats
     }
 
-    const donationData = {
-        "user_id": currentUser.id,
-        "animal_id": getAnimal,
-        "amount": donateAmount
-    }
+
 
     function handleSubmit(e) {
         e.preventDefault()

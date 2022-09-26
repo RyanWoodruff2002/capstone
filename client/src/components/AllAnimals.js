@@ -4,7 +4,7 @@ import AnimalCard from "./AnimalCard";
 function AllAnimals({ currentUser, animalArray }) {
 
     const renderAnimals = animalArray.map(animal => {
-        return ( <AnimalCard currentUser={currentUser} animal={animal} /> )
+        return ( <AnimalCard key={animal.id} currentUser={currentUser} animal={animal} /> )
     }) 
 
     return(
