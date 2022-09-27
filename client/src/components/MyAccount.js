@@ -52,30 +52,35 @@ function MyAccount({ setIsAuthenticated, setCurrentUser }) {
   }
   
   return(
-    <div>
-      <h1>My Account</h1>
-      <p>Hello {currentUserState.first_name}</p>
-      <div>
-        {emailToggle 
-        ?
+    <div class=" container mx-auto p-4 bg-white">
+      <div class=" w-full md:w-1/2 lg:w-1/3 mx-auto my-12">
+        <h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl" >Hello {currentUserState.first_name}</h3>
+        <br/>
         <div>
-          <>{currentUserState.email} </> 
-          <button onClick={() => setEmailToggle(emailToggle => !emailToggle)} >Edit</button>
+          {emailToggle 
+          ?
+          <div >
+            <>{currentUserState.email} </> 
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => setEmailToggle(emailToggle => !emailToggle)} >Edit</button>
+          </div>
+          : 
+          <form onSubmit={handleSubmitEmail} >
+            <input class="px-2 py-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm" placeholder={currentUserState.email} onChange={e => setEmailEdit(e.target.value)} ></input>
+            <div class="inline-flex">
+              <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-l" type="submit" >Submit</button>
+              <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-r" onClick={() => setEmailToggle(emailToggle => !emailToggle)} >Cancel</button>
+            </div>
+          </form>
+          }
         </div>
-        : 
-        <form onSubmit={handleSubmitEmail} >
-          <input placeholder={currentUserState.email} onChange={e => setEmailEdit(e.target.value)} ></input>
-          <button type="submit" >Submit</button>
-          <button onClick={() => setEmailToggle(emailToggle => !emailToggle)} >Cancel</button>
-        </form>
-        }
+        <br/>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={handleLogout} >Logout</button>
+        <br/>
+        <br/>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={deleteAccount} >Deactivate Account</button>
       </div>
-      <br/>
-      <button onClick={handleLogout} >Logout</button>
-      <br/>
-      <br/>
-      <button onClick={deleteAccount} >Deactivate Account</button>
     </div>
+
    )
 }
 

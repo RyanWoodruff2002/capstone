@@ -4,22 +4,22 @@ import { Link } from "react-router-dom";
 function Navbar() {
 
     return(
-        <div className="Navbar" >
-            <p className="Link" >
+        <div class="flex items-center justify-center " >
+            <a class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300"  >
                 <Link to="/allanimals">All Animals</Link>
-            </p>
-            <p className="Link" >
+            </a>
+            <a class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300"  >
                 <Link to="/myanimals">My Animals</Link>
-            </p>
-            <p className="Link" >
+            </a>
+            <a class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300" >
                 <Link to="/myaccount">My Account</Link>
-            </p>
-            <p className="Link" >
+            </a>
+            <a class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300" >
                 <Link to="/signup"></Link>
-            </p>
-            <p className="Link" >
+            </a>
+            <a class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300" >
                 <Link to="/login"></Link>
-            </p>
+            </a>
         </div>
     )
 }

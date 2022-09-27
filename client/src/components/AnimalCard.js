@@ -52,20 +52,22 @@ function AnimalCard({ currentUser, animal }) {
     const threats = animal.assoc_threats
 
     const threatsMap = threats.map(threat => {
-        return(<p>{threat}</p>)
+        return(<p class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{threat}</p>)
     })
 
     return (
-        <div>
-            <img alt="animal" src={animal.imageLink} />
-            <h1>{animal.common_name}</h1>
-            <h3>{animal.scientific_name}</h3>
+        <div class="border-solid border-2 border-blue-100 flex flex-col rounded overflow-hidden shadow-lg" >
+            <img class="w-full" alt="animal" src={animal.imageLink} />
+            <div class="font-bold text-xl mb-2" >
+                <h1 class="text-gray-700 text-base" >{animal.common_name}</h1>
+                <h3 class="text-gray-700 text-base" >{animal.scientific_name}</h3>
+            </div>
             <br/>
-            <div>
+            <div >
                 Threatened by:
                 {threatsMap}
             </div>
-            <h3 onClick={toggleDonateForm} >Donate Here!</h3>
+            <h3 class="mt-auto" onClick={toggleDonateForm} >Donate Here!</h3>
             {donateForm ? null : 
             <form onSubmit={handleSubmit} >
                 <input min="0" type="number" onChange={(e) => setDonateAmount(e.target.value)} placeholder="Input Amount Here" />
