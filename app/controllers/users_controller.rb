@@ -24,6 +24,12 @@ class UsersController < ApplicationController
         render json: user, status: :ok
     end
 
+    def my_animals
+        user = User.find(session[:user_id])
+        animals = user.animals
+        render json: animals, status: :ok
+    end
+
     def show
         current_user = User.find(session[:user_id])
         if current_user

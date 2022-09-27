@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/me', to: "users#show"
   delete '/deactivate/:id', to: "users#delete"
   patch '/update_email/:id', to: "users#update"
+  get '/my_animals/:id', to: "users#my_animals"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
