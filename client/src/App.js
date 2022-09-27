@@ -57,7 +57,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/allanimals' element={<AllAnimals currentUser={currentUser} animalArray={animalArray} />} />
-          <Route path='/myanimals' element={<MyAnimals />} />
+          <Route path='/myanimals' element={<MyAnimals currentUser={currentUser}/>} />
           <Route path ='/myaccount' element ={<MyAccount currentUser={currentUser} setIsAuthenticated={setIsAuthenticated} rerender={rerender} setCurrentUser={setCurrentUser} />} />
         </Routes>
     </div>
