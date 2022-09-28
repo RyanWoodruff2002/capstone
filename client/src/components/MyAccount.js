@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-function MyAccount({ setIsAuthenticated, setCurrentUser }) {
+function MyAccount({ rerender, setIsAuthenticated, setCurrentUser }) {
 
   const [currentUserState, setCurrentUserState] = useState({})
 
@@ -48,6 +48,10 @@ function MyAccount({ setIsAuthenticated, setCurrentUser }) {
     })
     .then(r=>r.json())
     .then(r=>console.log(r))
+    
+    // .then(e.target.reset())
+    .then(setEmailToggle(emailToggle=>!emailToggle))
+    .then(rerender())
     // .then(setEmailToggle(emailToggle => !emailToggle))
   }
   
