@@ -64,7 +64,7 @@ function AnimalCard({ currentUser, animal }) {
             </div>
             <br/>
             <div >
-                Threatened by:
+                <p>Threatened by:</p>
                 {threatsMap}
             </div>
             <h3 class="mt-auto" onClick={toggleDonateForm} >Donate Here!</h3>

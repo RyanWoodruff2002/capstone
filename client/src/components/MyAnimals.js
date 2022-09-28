@@ -4,13 +4,31 @@ import MyAnimalCard from "./MyAnimalCard";
 function MyAnimals({currentUser}) {
 
     const [animalArray, setAnimalArray] = useState([])
-    console.log(animalArray)
+    // console.log(animalArray)
 
     useEffect(() => {
         fetch(`my_animals/${currentUser.id}`)
         .then(r=>r.json())
-        .then(data=>setAnimalArray(data))
+        // .then(data=>setAnimalArray(data))
+        .then(data => removeDuplicates(data))
     }, [])
+
+    function removeDuplicates(data) {
+        const uniqueAnimals = []
+
+        const unique = data.filter(element => {
+            const isDuplicate = uniqueAnimals.includes(element.id)
+
+            if (!isDuplicate) {
+                uniqueAnimals.push(element.id)
+
+                return true
+            }
+
+            return false
+        })
+        setAnimalArray(unique)
+    }
 
     const renderAnimals = animalArray.map(animal => {
         return ( <MyAnimalCard  currentUser={currentUser} animal={animal} /> )
