@@ -10,24 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_23_155025) do
+ActiveRecord::Schema.define(version: 2022_09_29_173653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "animals", force: :cascade do |t|
-    t.string "common_name"
-    t.string "video_url"
-    t.string "imageLink"
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "game_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "assoc_threats", default: [], array: true
   end
 
-  create_table "donations", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "animal_id"
-    t.integer "amount"
+  create_table "games", force: :cascade do |t|
+    t.string "title"
+    t.string "thumbnail"
+    t.string "short_description"
+    t.string "game_url"
+    t.string "genre"
+    t.string "platform"
+    t.string "publisher"
+    t.string "developer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

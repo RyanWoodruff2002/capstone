@@ -1,21 +1,19 @@
 import React, {useState, useEffect} from "react";
 import Auth from "./components/Auth";
-import AllAnimals from "./components/AllAnimals";
-import MyAnimals from "./components/MyAnimals";
+import AllGames from "./components/AllGames";
+import MyList from "./components/MyList";
 import MyAccount from "./components/MyAccount";
 import Navbar from "./components/Navbar";
-
 import { Routes, Route, useNavigate } from "react-router-dom";
-// import LoginForm from "./components/LoginForm";
 
 function App() {
 
-  const [animalArray, setAnimalArray] = useState([])
+  const [gameArray, setGameArray] = useState([])
 
   useEffect(() => {
-    fetch("/animals").then((res) => {
+    fetch("/games").then((res) => {
       res.json().then((data) => {
-        setAnimalArray(data)
+        setGameArray(data)
       })
     })
   }, [])
@@ -56,8 +54,8 @@ function App() {
     <div className="app">
         <Navbar />
         <Routes>
-          <Route path='/allanimals' element={<AllAnimals currentUser={currentUser} animalArray={animalArray} />} />
-          <Route path='/myanimals' element={<MyAnimals currentUser={currentUser}/>} />
+          <Route path='/allgames' element={<AllGames currentUser={currentUser} gameArray={gameArray} />} />
+          <Route path='/mylist' element={<MyList currentUser={currentUser}/>} />
           <Route path ='/myaccount' element ={<MyAccount currentUser={currentUser} setIsAuthenticated={setIsAuthenticated} rerender={rerender} setCurrentUser={setCurrentUser} />} />
         </Routes>
     </div>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    skip_before_action :authorized,  only: [:show, :create, :update]
+    skip_before_action :authorized,  only: [:create]
 
     def create
         user = User.create!(user_params)
@@ -24,11 +24,17 @@ class UsersController < ApplicationController
         render json: user, status: :ok
     end
 
-    def my_animals
-        user = User.find(session[:user_id])
-        animals = user.animals
-        render json: animals, status: :ok
+    def my_games
+        user = User.find(params[:id])
+        games = user.games.uniq
+        render json: games, status: :ok
     end
+
+    # def my_animals
+    #     user = User.find(session[:user_id])
+    #     animals = user.animals
+    #     render json: animals, status: :ok
+    # end
 
     def show
         current_user = User.find(session[:user_id])
@@ -41,9 +47,9 @@ class UsersController < ApplicationController
 
     private
 
-    def update_params
-        params.permit(:email)
-    end
+    # def update_params
+    #     params.permit(:email)
+    # end
 
     def user_params
         params.permit(:first_name, :last_name, :email, :password)

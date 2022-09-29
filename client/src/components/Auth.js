@@ -25,7 +25,7 @@ const Auth = ({ rerender, navigate, setCurrentUser }) => {
       if (res.ok) {
         res.json().then((user) => {
           setCurrentUser(user);
-          navigate('/allanimals')
+          navigate('/allgames')
           rerender()
         });
       } else {
@@ -66,7 +66,7 @@ const Auth = ({ rerender, navigate, setCurrentUser }) => {
       if (res.ok) {
         res.json().then((user) => {
           setCurrentUser(user);
-          navigate('/allanimals')
+          navigate('/allgames')
           rerender()
         });
       } else {

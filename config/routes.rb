@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  post "/donation", to: "donations#createDonation"
-  post "/animal", to: "animals#createAnimal"
+  post "/bookmark", to: "bookmarks#createBookmark"
+  post "/game", to: "games#createGame"
 
   delete "/logout", to: "sessions#destroy"
   post "/login", to: "sessions#create"
   post "/users", to: "users#create"
 
-  get "/animals", to: "donations#animal_data"
+  get "/games", to: "bookmarks#game_data"
 
   get 'sessions/create'
   get 'sessions/destroy'
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/me', to: "users#show"
   delete '/deactivate/:id', to: "users#delete"
   patch '/update_email/:id', to: "users#update"
-  get '/my_animals/:id', to: "users#my_animals"
+  get '/my_games/:id', to: "users#my_games"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
