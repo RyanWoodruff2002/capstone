@@ -56,7 +56,7 @@ function App() {
         <Routes>
           <Route path='/allgames' element={<AllGames currentUser={currentUser} gameArray={gameArray} />} />
           <Route path='/mylist' element={<MyList currentUser={currentUser}/>} />
-          <Route path ='/myaccount' element ={<MyAccount currentUser={currentUser} setIsAuthenticated={setIsAuthenticated} rerender={rerender} setCurrentUser={setCurrentUser} />} />
+          <Route path ='/myaccount' element ={<MyAccount currentUser={currentUser} setIsAuthenticated={setIsAuthenticated} setCurrentUser={setCurrentUser} />} />
         </Routes>
     </div>
   );
