@@ -13,19 +13,19 @@ class UsersController < ApplicationController
     end
 
     def update
-        user = User.find(params[:id])
+        user = current_user
         user.update!(user_params)
         render json: user, status: :ok
     end
 
     def delete
-        user = User.find(params[:id])
+        user = current_user
         user.destroy
         render json: user, status: :ok
     end
 
     def my_games
-        user = User.find(params[:id])
+        user = current_user
         games = user.games.uniq
         render json: games, status: :ok
     end

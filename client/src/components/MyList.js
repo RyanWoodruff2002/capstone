@@ -7,7 +7,7 @@ function MyList({currentUser}) {
     // console.log(gameArray)
 
     useEffect(() => {
-        fetch(`my_games/${currentUser.id}`)
+        fetch(`my_games`)
         .then(r=>r.json())
         // .then(data=>setAnimalArray(data))
         .then(data => setGameArray(data))

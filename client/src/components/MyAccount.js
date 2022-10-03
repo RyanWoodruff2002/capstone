@@ -26,7 +26,7 @@ function MyAccount({ rerender, setIsAuthenticated, setCurrentUser }) {
   const [emailToggle, setEmailToggle] = useState(true)
 
   function deleteAccount() {
-    fetch(`/deactivate/${currentUserState.id}`, {
+    fetch(`/deactivate`, {
       method: 'DELETE'
     }).then(r=>r.json()).then(r=>console.log(r)).then(handleLogout())
   }
@@ -41,7 +41,7 @@ function MyAccount({ rerender, setIsAuthenticated, setCurrentUser }) {
   function handleSubmitEmail(e) {
     e.preventDefault()
     
-    fetch(`/update_email/${currentUserState.id}`, {
+    fetch(`/update_email`, {
       method: 'PATCH',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(editEmailData)
