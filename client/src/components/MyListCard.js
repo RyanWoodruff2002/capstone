@@ -13,9 +13,6 @@ function MyListCard({game}) {
                 <h3 className="text-gray-700 text-base" >{game.platform}</h3>
             </div>
             <p>{game.short_description}</p>
-            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-r">
-                Remove From My List
-            </button>
             <br/>
             <p>Published by: {game.publisher}</p>
             <p>Developed by: {game.developer}</p>
